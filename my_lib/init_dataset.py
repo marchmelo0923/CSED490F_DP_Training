@@ -32,9 +32,7 @@ if __name__ == "__main__":
         print("Dataset already exists")
         exit()
 
-    if not os.path.exists(origin_dataset_dir):
-        os.makedirs(origin_dataset_dir)
-        os.makedirs(temp_dataset_dir)
+    os.makedirs(temp_dataset_dir)
 
     print(f"Downloading dataset to {temp_dataset_dir} ...")
     train_dataset, test_dataset = save_cifar10(temp_dataset_dir, args.seed)
