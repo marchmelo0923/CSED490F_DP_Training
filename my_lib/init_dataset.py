@@ -36,7 +36,11 @@ if __name__ == "__main__":
         os.makedirs(origin_dataset_dir)
         os.makedirs(temp_dataset_dir)
 
+    print(f"Downloading dataset to {temp_dataset_dir} ...")
     train_dataset, test_dataset = save_cifar10(temp_dataset_dir, args.seed)
+    print(f"Downloading dataset to {temp_dataset_dir} Done")
+    print(f"Copying dataset to {origin_dataset_dir} ...")
     shutil.copytree(temp_dataset_dir, origin_dataset_dir)
     shutil.rmtree(temp_dataset_dir)
+    print(f"Copying dataset to {origin_dataset_dir} Done")
     print("Prepare dataset Done")
