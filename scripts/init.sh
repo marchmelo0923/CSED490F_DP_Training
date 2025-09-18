@@ -10,4 +10,7 @@ mkdir -m 777 -p runs/dp_4
 
 pip install -r requirements.txt
 
-python my_lib/init_dataset.py --seed 42 --dataset_dir dataset
+# Our master node has limited power, so we download dataset to /tmp, and then copy to dataset directory.
+mkdir -m 777 -p /tmp
+
+python my_lib/init_dataset.py --seed 42 --temp_dir /tmp --dataset_dir dataset
