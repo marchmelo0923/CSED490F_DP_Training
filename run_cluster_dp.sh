@@ -10,7 +10,10 @@
 ##  node 지정하기
 #SBATCH   --nodes=1              # the number of nodes 
 #SBATCH   --ntasks-per-node=1
-#SBATCH   --cpus-per-task=4
+#SBATCH   --cpus-per-task=6
+
+## Time limit
+#SBATCH --time 00:20:00
 
 # Set your name and home path
 # For REPO_DIR, we recommend you to use same name as origin git repository name,
@@ -24,6 +27,8 @@ DOCKER_NAME=${YOUR_NAME}_CSED490F_DP_Training_container
 DOCKER_IMAGE=25fallcsed490f/cluster:2.7.1-cuda11.8-cudnn9-devel-with-nsight
 ## function to init cleanup file
 function cleanup {
+    ## change permission in docker container created files
+    docker exec ${DOCKER_NAME} bash -c "chmod -R 777 /HOME"
     ## docker container stop
     docker stop ${DOCKER_NAME}
     ## docker container remove
